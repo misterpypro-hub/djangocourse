@@ -1,5 +1,4 @@
-venv/
-.idea/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -19,3 +18,5 @@ db.sqlite3
 # IDE
 .vscode/
 .idea/
+
+.gitignore
