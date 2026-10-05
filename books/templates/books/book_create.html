@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block page_title %}Books update {{ book.title }}{% endblock %}
+
+
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-success mt-2">ذخیره</button>
+    </form>
+{% endblock %}
