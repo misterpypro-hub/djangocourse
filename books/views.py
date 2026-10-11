@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from books.models import Book
+from books.models import Book, Comment
 
 
 class BookListView(ListView):
@@ -10,9 +10,14 @@ class BookListView(ListView):
     template_name = 'books/book_list.html'
     context_object_name = 'books'
 
-class BookDetailView(DetailView):
-    model = Book
-    template_name = 'books/book_detail.html'
+# class BookDetailView(DetailView):
+#     model = Book
+#     template_name = 'books/book_detail.html'
+
+def book_detail_view(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    book_comments = book.comments.all()
+    return render(request, 'books/book_detail.html', {'book': book, 'comments': book_comments})
 
 
 class BookCreateView(CreateView):
